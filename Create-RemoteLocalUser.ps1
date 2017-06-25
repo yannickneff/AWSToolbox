@@ -21,7 +21,7 @@ $pso = New-PsSessionOption -SkipCACheck -SkipCNCheck
 
 Write-Host "Creating local user $NewUserName on $ComputerName"
 
-Invoke-Command -ComputerName $ComputerName -Credential $Creds -SessionOption $pso -UseSSL -ScriptBlock {param($NewUserName,$NewUserPassword) NET USER $NewUserName $NewUserPassword /ADD /Y} -ArgumentList $NewUserName, $NewUserPassword
+Invoke-Command -ComputerName $ComputerName -Credential $Creds -SessionOption $pso -UseSSL -ScriptBlock {param($NewUserName,$NewUserPassword) NET USER $NewUserName $NewUserPassword /ADD /Y /logonpasswordchg:yes} -ArgumentList $NewUserName, $NewUserPassword
 
 Write-Host "Creating the user $NewUserName to `"Remote Desktop Users group`""
 
